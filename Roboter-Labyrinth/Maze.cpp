@@ -6,10 +6,31 @@
  */
 
 #include "Maze.hpp"
+#include <vector>
+#include <iostream>
+#include <fstream>
 
-Maze::Maze()
+using namespace std;
+
+Maze::Maze(const std::string& filename)
 {
-	// TODO Auto-generated constructor stub
+	ifstream fin(filename);
+
+	vector<string> v;
+
+	string line;
+
+	while(getline(fin, line))
+	{
+		v.push_back(line);
+	}
+
+	// show all the words, here 'inside single quote delimiters'
+
+	for( size_t i = 0; i < v.size(); ++i )
+	{
+		cout << v[i] << endl;
+	}
 
 }
 

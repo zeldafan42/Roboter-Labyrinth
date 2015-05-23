@@ -12,6 +12,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <getopt.h>
+#include "Maze.hpp"
 
 using namespace std;
 
@@ -22,10 +23,6 @@ int main(int argc,char* argv[])
 	int c = 0;
 	int robotNumber = 0;
 	bool robotsInUse[3] = {0,0,0};
-
-	ifstream fin(argv[1]);
-	vector <string> v;
-	string line;
 
 	while( (c = getopt(argc, argv, "t:h")) != EOF )
 	{
@@ -44,17 +41,8 @@ int main(int argc,char* argv[])
 					break;
 		}
 	}
+	Maze maze(argv[optind]);
 
-
-	while(getline(fin, line))
-	{
-		v.push_back(line);
-	}
-
-	for( size_t i = 0; i < v.size(); ++i )
-	{
-		cout << v[i] << endl;
-	}
 }
 
 
