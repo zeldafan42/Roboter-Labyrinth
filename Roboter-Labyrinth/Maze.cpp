@@ -16,20 +16,18 @@ Maze::Maze(const std::string& filename)
 {
 	ifstream fin(filename);
 
-	vector<string> v;
-
 	string line;
 
 	while(getline(fin, line))
 	{
-		v.push_back(line);
+		field.push_back(line);
 	}
 
 	// show all the words, here 'inside single quote delimiters'
 
-	for( size_t i = 0; i < v.size(); ++i )
+	for( size_t i = 0; i < field.size(); ++i )
 	{
-		cout << v[i] << endl;
+		cout << field[i] << endl;
 	}
 
 }
