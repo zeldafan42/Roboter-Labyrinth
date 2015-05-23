@@ -23,6 +23,10 @@ int main(int argc,char* argv[])
 	int robotNumber = 0;
 	bool robotsInUse[3] = {0,0,0};
 
+	ifstream fin(argv[1]);
+	vector <string> v;
+	string line;
+
 	while( (c = getopt(argc, argv, "t:h")) != EOF )
 	{
 		switch(c)
@@ -41,11 +45,6 @@ int main(int argc,char* argv[])
 		}
 	}
 
-
-	ifstream fin( argv[1] );
-
-	vector <string> v;
-	string line;
 
 	while(getline(fin, line))
 	{
