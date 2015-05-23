@@ -7,12 +7,14 @@
 
 #include "Maze.hpp"
 
-Maze::Maze() {
+Maze::Maze()
+{
 	// TODO Auto-generated constructor stub
 
 }
 
-Maze::~Maze() {
+Maze::~Maze()
+{
 	// TODO Auto-generated destructor stub
 }
 

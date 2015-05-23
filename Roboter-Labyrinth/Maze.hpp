@@ -8,7 +8,8 @@
 #ifndef MAZE_HPP_
 #define MAZE_HPP_
 
-class Maze {
+class Maze
+{
 public:
 	Maze();
 	virtual ~Maze();
