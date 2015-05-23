@@ -8,8 +8,6 @@
 #include <cstdio>
 #include <string>
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <vector>
 #include <cstdlib>
 #include <cassert>
@@ -43,24 +41,16 @@ int main(int argc,char* argv[])
 		}
 	}
 
-	FILE* filePointer = fopen(argv[1], "r");
 
 	ifstream fin( argv[1] );
 
 	vector <string> v;
-	int read = 0;
-
 	string line;
-	char* forFgets;
 
-	while(getline(fin, line) != -1)
+	while(getline(fin, line))
 	{
-		read = getline(fin, line)
-		string word = fgets(forFgets, read, filePointer);
-		v.push_back(word);
+		v.push_back(line);
 	}
-
-	// show all the words, here 'inside single quote delimiters'
 
 	for( size_t i = 0; i < v.size(); ++i )
 	{
@@ -72,7 +62,7 @@ int main(int argc,char* argv[])
 
 void printUsage()
 {
-	fprintf(stderr, "Usage: gridserver -x INT>0 -y INT>0\n");
+	fprintf(stderr, "Usage: labrob FILENAME [-t1] [-t2] ... [-tn]\n");
 	exit(1);
 }
 
