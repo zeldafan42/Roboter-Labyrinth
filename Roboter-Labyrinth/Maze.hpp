@@ -16,7 +16,7 @@ class Maze
 {
 public:
 	Maze(const std::string& filename);
-	Maze(const Maze& maze);
+	//Maze(const Maze& maze);
 	~Maze();
 	std::pair<int,int> getStart() const;
 	std::pair<int,int> getEnd() const;

@@ -65,11 +65,11 @@ std::pair<int, int> Maze::getEnd() const
 
 bool Maze::passable(std::pair<int, int> pair) const
 {
-	if(pair.first >= field.at(0).length() || pair.first < 0 || pair.second >= field.size() || pair.second < 0 )
+	if(pair.first >= (int) field.at(0).length() || pair.first < 0 || pair.second >= (int) field.size() || pair.second < 0 )
 	{
 		return false;
 	}
-	else if(field.at(pair.second).at(pair.first) != ' ')
+	else if(field.at(pair.second).at(pair.first) == '#')
 	{
 		return false;
 	}
@@ -124,10 +124,12 @@ void Maze::mark(std::pair<int, int> pair, char marker)
 	field.at(pair.first).at(pair.second) = marker;
 }
 
-Maze::Maze(const Maze& maze)
+/*Maze::Maze(const Maze& maze)
 {
 	field = maze.field;
-}
+	start = maze.start;
+	end = maze.end;
+}*/
 
 void Maze::printMaze() const
 {
