@@ -5,7 +5,7 @@
  *      Author: Zombieranke
  */
 
-#include "Linksdreher.h"
+#include "Linksdreher.hpp"
 #include <utility>
 
 Linksdreher::Linksdreher()
@@ -28,8 +28,7 @@ Maze& solve()
 		turnAndMove();
 	}
 
-
-
+	return this.maze;
 }
 
 
@@ -40,16 +39,16 @@ void turnAndMove()
 
 	switch(this.facing)
 	{
-		case 0: 	targetPosition = std:make_pair(get<0>(this.pos)-1,get<1>(this.pos));
+		case 0: 	targetPosition = std::make_pair(std::get<0>(this.pos)-1,std::get<1>(this.pos));
 					break;
 
-		case 1:		targetPosition = std:make_pair(get<0>(this.pos),get<1>(this.pos)-1);
+		case 1:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)-1);
 					break;
 
-		case 2:		targetPosition = std:make_pair(get<0>(this.pos)+1,get<1>(this.pos));
+		case 2:		targetPosition = std::make_pair(std::get<0>(this.pos)+1,std::get<1>(this.pos));
 					break;
 
-		case 3:		targetPosition = std:make_pair(get<0>(this.pos),get<1>(this.pos)+1);
+		case 3:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)+1);
 					break;
 
 		default:	break;
@@ -68,16 +67,16 @@ void turnAndMove()
 	{
 		switch(this.facing)
 		{
-			case 0:		targetPosition = std:make_pair(get<0>(this.pos),get<1>(this.pos)-1);
+			case 0:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)-1);
 						break;
 
-			case 1:		targetPosition = std:make_pair(get<0>(this.pos)+1,get<1>(this.pos));
+			case 1:		targetPosition = std::make_pair(std::get<0>(this.pos)+1,std::get<1>(this.pos));
 						break;
 
-			case 2:		targetPosition = std:make_pair(get<0>(this.pos),get<1>(this.pos)+1);
+			case 2:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)+1);
 						break;
 
-			case 3: 	targetPosition = std:make_pair(get<0>(this.pos)-1,get<1>(this.pos));
+			case 3: 	targetPosition = std::make_pair(std::get<0>(this.pos)-1,std::get<1>(this.pos));
 						break;
 
 			default:	break;
@@ -91,16 +90,16 @@ void turnAndMove()
 		{
 			switch(this.facing)
 			{
-				case 0:		targetPosition = std:make_pair(get<0>(this.pos)+1,get<1>(this.pos));
+				case 0:		targetPosition = std::make_pair(std::get<0>(this.pos)+1,std::get<1>(this.pos));
 							break;
 
-				case 1:		targetPosition = std:make_pair(get<0>(this.pos),get<1>(this.pos)+1);
+				case 1:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)+1);
 							break;
 
-				case 2: 	targetPosition = std:make_pair(get<0>(this.pos)-1,get<1>(this.pos));
+				case 2: 	targetPosition = std::make_pair(std::get<0>(this.pos)-1,std::get<1>(this.pos));
 							break;
 
-				case 3:		targetPosition = std:make_pair(get<0>(this.pos),get<1>(this.pos)-1);
+				case 3:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)-1);
 							break;
 
 				default:	break;

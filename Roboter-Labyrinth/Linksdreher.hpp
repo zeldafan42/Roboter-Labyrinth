@@ -1,12 +1,12 @@
 /*
- * Linksdreher.h
+ * Linksdreher.hpp
  *
  *  Created on: 23.05.2015
  *      Author: Zombieranke
  */
 
-#ifndef LINKSDREHER_H_
-#define LINKSDREHER_H_
+#ifndef LINKSDREHER_HPP_
+#define LINKSDREHER_HPP_
 
 #include "Robot.hpp"
 #include <utility>
@@ -17,6 +17,10 @@ public:
 	Linksdreher();
 	virtual ~Linksdreher();
 	Maze& solve();
+
+private:
+	void turnAndMove();
+	void move(std::pair<int,int> targetPosition);
 };
 
-#endif /* LINKSDREHER_H_ */
+#endif /* LINKSDREHER_HPP_ */
