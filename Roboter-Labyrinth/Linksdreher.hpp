@@ -12,11 +12,11 @@
 #include <utility>
 
 
-class Linksdreher: public Robot {
+class Linksdreher : public Robot {
 public:
-	Linksdreher();
+	Linksdreher(const Maze& maze);
 	virtual ~Linksdreher();
-	Maze& solve();
+	void printSolution();
 
 private:
 	void turnAndMove();

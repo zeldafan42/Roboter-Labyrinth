@@ -7,14 +7,14 @@
 
 #include "Robot.hpp"
 
-#include "Maze.hpp"
-
-Robot::Robot(Maze maze) {
-	// TODO Auto-generated constructor stub
-
+Robot::Robot(const Maze& maze)
+{
+	this->maze = new Maze(maze);
+	dir = 0;
 }
 
-Robot::~Robot() {
+Robot::~Robot()
+{
 	// TODO Auto-generated destructor stub
 }
 

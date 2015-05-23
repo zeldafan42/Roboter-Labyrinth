@@ -8,7 +8,7 @@
 #include "Linksdreher.hpp"
 #include <utility>
 
-Linksdreher::Linksdreher()
+Linksdreher::Linksdreher(const Maze& maze) : Robot(maze)
 {
 	// TODO Auto-generated constructor stub
 
@@ -19,101 +19,105 @@ Linksdreher::~Linksdreher()
 	// TODO Auto-generated destructor stub
 }
 
-Maze& solve()
+void Linksdreher::printSolution()
 {
-	this.pos = maze.getStart();
+	this->pos = maze->getStart();
 
-	while(pos != maze.getEnd())
+	while(pos != maze->getEnd())
 	{
 		turnAndMove();
 	}
 
-	return this.maze;
+	maze->printMaze();
 }
 
 
-void turnAndMove()
+void Linksdreher::turnAndMove()
 {
 	bool leftFree = false;
-	std::pair<int,int> targetPosition;
+	std::pair<int,int> targetPosition = pos;
 
-	switch(this.facing)
+
+
+	switch(this->dir)
 	{
-		case 0: 	targetPosition = std::make_pair(std::get<0>(this.pos)-1,std::get<1>(this.pos));
+		case 0: 	targetPosition.first--;
 					break;
 
-		case 1:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)-1);
+		case 1:		targetPosition.second--;
 					break;
 
-		case 2:		targetPosition = std::make_pair(std::get<0>(this.pos)+1,std::get<1>(this.pos));
+		case 2:		targetPosition.first++;
 					break;
 
-		case 3:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)+1);
+		case 3:		targetPosition.second++;
 					break;
 
 		default:	break;
 
 	}
 
-	leftFree = maze.passable(targetPosition);
+	leftFree = maze->passable(targetPosition);
 
 	if(leftFree)
 	{
-		this.facing = (this.facing+3) %4; // turns left
+		this->dir = (this->dir+3) %4; // turns left
 		move(targetPosition);
 		return;
 	}
 	else
 	{
-		switch(this.facing)
+		targetPosition = pos;
+		switch(this->dir)
 		{
-			case 0:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)-1);
+			case 0:		targetPosition.second--;
 						break;
 
-			case 1:		targetPosition = std::make_pair(std::get<0>(this.pos)+1,std::get<1>(this.pos));
+			case 1:		targetPosition.first++;
 						break;
 
-			case 2:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)+1);
+			case 2:		targetPosition.second++;
 						break;
 
-			case 3: 	targetPosition = std::make_pair(std::get<0>(this.pos)-1,std::get<1>(this.pos));
+			case 3: 	targetPosition.first--;
 						break;
 
 			default:	break;
 
 		}
-		if(maze.passable(targetPosition)) // Now looks in front of him
+		if(maze->passable(targetPosition)) // Now looks in front of him
 		{
 			return; //keeps his facing direction
 		}
 		else
 		{
-			switch(this.facing)
+			targetPosition = pos;
+			switch(this->dir)
 			{
-				case 0:		targetPosition = std::make_pair(std::get<0>(this.pos)+1,std::get<1>(this.pos));
+				case 0:		targetPosition.first++;
 							break;
 
-				case 1:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)+1);
+				case 1:		targetPosition.second++;
 							break;
 
-				case 2: 	targetPosition = std::make_pair(std::get<0>(this.pos)-1,std::get<1>(this.pos));
+				case 2: 	targetPosition.first--;
 							break;
 
-				case 3:		targetPosition = std::make_pair(std::get<0>(this.pos),std::get<1>(this.pos)-1);
+				case 3:		targetPosition.second--;
 							break;
 
 				default:	break;
 
 			}
 
-			if(maze.passable(targetPosition)) // Now looks to the right
+			if(maze->passable(targetPosition)) // Now looks to the right
 			{
-				this.facing = (this.facing+1) %4; // turns right
+				this->dir = (this->dir+1) %4; // turns right
 				return;
 			}
 			else
 			{
-				this.facing = (this.facing+2) %4; //makes an U-turn
+				this->dir = (this->dir+2) %4; //makes an U-turn
 				return;
 			}
 		}
@@ -122,11 +126,11 @@ void turnAndMove()
 
 }
 
-void move(std::pair<int,int> targetPosition)
+void Linksdreher::move(std::pair<int,int> targetPosition)
 {
-	maze.mark(this.pos,'L');
-	this.pos = targetPosition;
-	maze.mark(this.pos,'X');
+	maze->mark(this->pos,'L');
+	this->pos = targetPosition;
+	maze->mark(this->pos,'X');
 }
 
 

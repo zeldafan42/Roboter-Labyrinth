@@ -8,18 +8,19 @@
 #ifndef ROBOT_HPP_
 #define ROBOT_HPP_
 
-class Maze;
-
+#include "Maze.hpp"
 #include <utility>
 
 class Robot {
 public:
-	Robot(Maze maze);
-	virtual Maze& solve() = 0;
+	Robot(const Maze& maze);
+	virtual void printSolution() = 0;
 	virtual ~Robot();
 
-private:
+protected:
 	std::pair<int,int> pos;
+	Maze * maze;
+	int dir;
 };
 
 #endif /* ROBOT_HPP_ */

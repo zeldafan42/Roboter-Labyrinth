@@ -13,6 +13,8 @@
 #include <cassert>
 #include <getopt.h>
 #include "Maze.hpp"
+#include "Robot.hpp"
+#include "Linksdreher.hpp"
 
 using namespace std;
 
@@ -21,6 +23,7 @@ void printUsage();
 int main(int argc,char* argv[])
 {
 	int c = 0;
+	int i = 0;
 	int robotNumber = 0;
 	bool robotsInUse[3] = {0,0,0};
 
@@ -30,7 +33,12 @@ int main(int argc,char* argv[])
 		{
 		case 't':	robotNumber = (int) strtol(optarg, NULL, 0);
 
-					robotsInUse[robotNumber] = true;
+					if(robotNumber>3 || robotNumber < 1)
+					{
+						cout << "Robot #" << robotNumber << " not in use";
+					}
+
+					robotsInUse[robotNumber-1] = true;
 
 					break;
 
@@ -42,6 +50,22 @@ int main(int argc,char* argv[])
 		}
 	}
 	Maze maze(argv[optind]);
+	maze.printMaze();
+
+	for(i = 0; i<3; i++)
+	{
+		if(robotsInUse[i])
+		{
+			switch(i)
+			{
+			case 0:
+					cout << "Starting robot" << i+1 <<endl;
+					Linksdreher l1(maze);
+					l1.printSolution();
+					break;
+			}
+		}
+	}
 
 }
 
