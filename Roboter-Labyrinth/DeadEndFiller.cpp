@@ -23,6 +23,14 @@ void DeadEndFiller::printSolution()
 	{
 		maze->printMaze();
 	}
+	maze->printMaze();
+
+	this->pos = maze->getStart();
+
+	while(pos != maze->getEnd())
+	{
+		turnAndMove();
+	}
 
 	maze->printMaze();
 }
@@ -164,7 +172,52 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 }
 
 
+void DeadEndFiller::turnAndMove()
+{
+	int i = 0;
+	std::pair<int,int> targetPosition = pos;
 
+	this->dir = (this->dir+3) %4;
+
+
+	for(i = 0; i < 3; i++)
+	{
+		targetPosition = pos;
+		switch(this->dir)
+		{
+			case 0:		targetPosition.second--;
+						break;
+
+			case 1:		targetPosition.first++;
+						break;
+
+			case 2:		targetPosition.second++;
+						break;
+
+			case 3: 	targetPosition.first--;
+						break;
+
+			default:	break;
+
+		}
+		if(!(maze->isMarked(targetPosition,'#') || maze->isMarked(targetPosition,'D')))
+		{
+			move(targetPosition);
+			return;
+		}
+		else
+		{
+			this->dir = (this->dir+1) %4;
+		}
+	}
+}
+
+void DeadEndFiller::move(std::pair<int,int> targetPosition)
+{
+	maze->mark(this->pos,'L');
+	this->pos = targetPosition;
+	maze->mark(this->pos,'X');
+}
 
 
 

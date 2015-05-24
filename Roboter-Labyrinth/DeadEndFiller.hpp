@@ -21,6 +21,8 @@ private:
 	int fillDeadEnds();
 	int getNeighbours(std::pair<int,int>currentField, int width, int height);
 	bool recursiveFill(std::pair<int,int>currentField, int width, int height);
+	void turnAndMove();
+	void move(std::pair<int,int> targetPosition);
 };
 
 #endif /* DEADENDFILLER_HPP_ */
