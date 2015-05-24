@@ -69,6 +69,7 @@ int main(int argc,char* argv[])
 							l1.printSolution();
 						}
 						break;
+
 				case 1:
 						cout << "Starting robot" << i+1 <<endl;
 						{
