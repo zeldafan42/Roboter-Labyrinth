@@ -182,7 +182,7 @@ void DeadEndFiller::turnAndMove()
 	int i = 0;
 	std::pair<int,int> targetPosition = pos;
 
-	this->dir = (this->dir+3) %4;
+	this->dir = (this->dir+1) %4;
 
 
 	for(i = 0; i < 3; i++)
@@ -212,7 +212,7 @@ void DeadEndFiller::turnAndMove()
 		}
 		else
 		{
-			this->dir = (this->dir+1) %4;
+			this->dir = (this->dir+3) %4;
 		}
 	}
 
@@ -221,7 +221,7 @@ void DeadEndFiller::turnAndMove()
 void DeadEndFiller::move(std::pair<int,int> targetPosition)
 {
 	steps++;
-	maze->mark(this->pos,'L');
+	maze->mark(this->pos,'R');
 	this->pos = targetPosition;
 	maze->mark(this->pos,'X');
 }
