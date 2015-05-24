@@ -17,9 +17,10 @@ public:
 	Linksdreher(const Maze& maze);
 	virtual ~Linksdreher();
 	void printSolution();
+	void printSteps();
 
 private:
-	void turnAndMove();
+	bool turnAndMove();
 	void move(std::pair<int,int> targetPosition);
 };
 

@@ -35,6 +35,11 @@ void DeadEndFiller::printSolution()
 	maze->printMaze();
 }
 
+void DeadEndFiller::printSteps()
+{
+	std::cout << "Robot 2 \"DeadEndFiller\" needed" << steps << " steps to get through the maze" << std::endl;
+}
+
 
 int DeadEndFiller::fillDeadEnds()
 {

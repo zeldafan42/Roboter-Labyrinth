@@ -67,6 +67,7 @@ int main(int argc,char* argv[])
 						{
 							Linksdreher l1(maze);
 							l1.printSolution();
+							l1.printSteps();
 						}
 						break;
 
@@ -75,6 +76,7 @@ int main(int argc,char* argv[])
 						{
 							DeadEndFiller d1(maze);
 							d1.printSolution();
+							d1.printSteps();
 						}
 						break;
 				default:

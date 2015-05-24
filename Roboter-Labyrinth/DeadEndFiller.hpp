@@ -16,6 +16,7 @@ public:
 	DeadEndFiller(const Maze& maze);
 	virtual ~DeadEndFiller();
 	void printSolution();
+	void printSteps();
 
 private:
 	int fillDeadEnds();
