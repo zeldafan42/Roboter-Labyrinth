@@ -13,16 +13,17 @@
 
 class Robot {
 public:
-	Robot(const Maze& maze);
+	Robot(const Maze& maze, const std::string& name);
 	virtual void printSolution() = 0;
 	virtual ~Robot();
-	virtual void printSteps() = 0;
+	void printSteps();
 
 protected:
 	std::pair<int,int> pos;
 	Maze * maze;
 	int dir;
 	int steps;
+	const std::string name;
 };
 
 #endif /* ROBOT_HPP_ */

@@ -8,9 +8,10 @@
 #include "DeadEndFiller.hpp"
 #include <utility>
 
-DeadEndFiller::DeadEndFiller(const Maze& maze) : Robot(maze) {
-	// TODO Auto-generated constructor stub
 
+DeadEndFiller::DeadEndFiller(const Maze& maze) : Robot(maze,"DeadEndFiller")
+{
+	// TODO Auto-generated constructor stub
 }
 
 DeadEndFiller::~DeadEndFiller() {
@@ -34,12 +35,6 @@ void DeadEndFiller::printSolution()
 
 	maze->printMaze();
 }
-
-void DeadEndFiller::printSteps()
-{
-	std::cout << "Robot 2 \"DeadEndFiller\" needed " << steps << " steps to get through the maze" << std::endl;
-}
-
 
 int DeadEndFiller::fillDeadEnds()
 {

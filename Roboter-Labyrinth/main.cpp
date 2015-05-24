@@ -63,7 +63,6 @@ int main(int argc,char* argv[])
 				switch(i)
 				{
 				case 0:
-						cout << "Starting robot" << i+1 <<endl;
 						{
 							Linksdreher l1(maze);
 							l1.printSolution();

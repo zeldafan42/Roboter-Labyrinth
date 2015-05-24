@@ -16,7 +16,9 @@ public:
 	DeadEndFiller(const Maze& maze);
 	virtual ~DeadEndFiller();
 	void printSolution();
-	void printSteps();
+
+protected:
+	const std::string name;
 
 private:
 	int fillDeadEnds();

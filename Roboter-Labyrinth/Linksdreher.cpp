@@ -8,7 +8,8 @@
 #include "Linksdreher.hpp"
 #include <utility>
 
-Linksdreher::Linksdreher(const Maze& maze) : Robot(maze)
+
+Linksdreher::Linksdreher(const Maze& maze) : Robot(maze, "Linksdreher")
 {
 	// TODO Auto-generated constructor stub
 
@@ -30,11 +31,6 @@ void Linksdreher::printSolution()
 	}
 
 	maze->printMaze();
-}
-
-void Linksdreher::printSteps()
-{
-	std::cout << "Robot 1 \"Linksdreher\" needed " << steps << " steps to get through the maze" << std::endl;
 }
 
 
