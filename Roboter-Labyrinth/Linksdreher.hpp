@@ -20,7 +20,7 @@ public:
 	void printSteps();
 
 private:
-	bool turnAndMove();
+	void turnAndMove();
 	void move(std::pair<int,int> targetPosition);
 };
 

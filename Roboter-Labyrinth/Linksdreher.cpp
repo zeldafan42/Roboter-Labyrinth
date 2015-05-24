@@ -26,7 +26,7 @@ void Linksdreher::printSolution()
 
 	while(pos != maze->getEnd())
 	{
-		steps += turnAndMove();
+		turnAndMove();
 	}
 
 	maze->printMaze();
@@ -34,11 +34,11 @@ void Linksdreher::printSolution()
 
 void Linksdreher::printSteps()
 {
-	std::cout << "Robot 1 \"Linksdreher\" needed" << steps << " steps to get through the maze" << std::endl;
+	std::cout << "Robot 1 \"Linksdreher\" needed " << steps << " steps to get through the maze" << std::endl;
 }
 
 
-bool Linksdreher::turnAndMove()
+void Linksdreher::turnAndMove()
 {
 	int i = 0;
 	std::pair<int,int> targetPosition = pos;
@@ -69,19 +69,19 @@ bool Linksdreher::turnAndMove()
 		if(maze->passable(targetPosition))
 		{
 			move(targetPosition);
-			return true;
+			return;
 		}
 		else
 		{
 			this->dir = (this->dir+1) %4;
-			return false;
+
 		}
 	}
-	return false;
 }
 
 void Linksdreher::move(std::pair<int,int> targetPosition)
 {
+	steps++;
 	maze->mark(this->pos,'L');
 	this->pos = targetPosition;
 	maze->mark(this->pos,'X');

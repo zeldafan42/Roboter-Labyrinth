@@ -37,7 +37,7 @@ void DeadEndFiller::printSolution()
 
 void DeadEndFiller::printSteps()
 {
-	std::cout << "Robot 2 \"DeadEndFiller\" needed" << steps << " steps to get through the maze" << std::endl;
+	std::cout << "Robot 2 \"DeadEndFiller\" needed " << steps << " steps to get through the maze" << std::endl;
 }
 
 
@@ -215,10 +215,12 @@ void DeadEndFiller::turnAndMove()
 			this->dir = (this->dir+1) %4;
 		}
 	}
+
 }
 
 void DeadEndFiller::move(std::pair<int,int> targetPosition)
 {
+	steps++;
 	maze->mark(this->pos,'L');
 	this->pos = targetPosition;
 	maze->mark(this->pos,'X');
