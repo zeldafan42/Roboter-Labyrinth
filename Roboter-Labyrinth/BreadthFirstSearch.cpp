@@ -61,9 +61,11 @@ void BreadthFirstSearch::printSolution()
 				open.push_back(target);
 			}
 		}
+		//maze->printMaze();
 		open.pop_front();
 	}
 	open.clear();
+	//maze->printMaze();
 
 	pos = maze->getStart();
 	while(pos != maze->getEnd())

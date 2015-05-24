@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -22,6 +23,8 @@ Maze::Maze(const std::string& filename)
 
 	while(getline(fin, line))
 	{
+		line.erase(std::remove(line.begin(), line.end(), '\n'), line.end());
+		line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
 		if(line.length() > 0)
 		{
 			field.push_back(line);
@@ -119,7 +122,7 @@ bool Maze::passable(std::pair<int, int> pair) const
 
 bool Maze::isMarked(std::pair<int, int> pair, char mark) const
 {
-	if(pair.first >= (int) fieldSize.first || pair.first < 0 || pair.second >= fieldSize.second || pair.second < 0 )
+	if(pair.first >= fieldSize.first || pair.first < 0 || pair.second >= fieldSize.second || pair.second < 0 )
 	{
 		return false;
 	}

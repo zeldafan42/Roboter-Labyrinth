@@ -25,6 +25,7 @@ void printUsage();
 int main(int argc,char* argv[])
 {
 	int c = 0;
+	int count = 0;
 	int i = 0;
 	int robotNumber = 0;
 	bool robotsInUse[3] = {0,0,0};
@@ -39,6 +40,7 @@ int main(int argc,char* argv[])
 					{
 						cout << "Robot #" << robotNumber << " not in use";
 					}
+					count++;
 
 					robotsInUse[robotNumber-1] = true;
 
@@ -54,6 +56,10 @@ int main(int argc,char* argv[])
 
 	if(argc == optind + 1)
 	{
+		if(count == 0)
+		{
+			robotsInUse[0] = true;
+		}
 		Maze maze(argv[optind]);
 		maze.printMaze();
 
