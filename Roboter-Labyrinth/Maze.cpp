@@ -14,8 +14,6 @@ using namespace std;
 
 Maze::Maze(const std::string& filename)
 {
-	int fieldSizeX = 0;
-	int fieldSizeY = 0;
 	int toFindCount = 2;
 
 	ifstream fin(filename);
@@ -33,14 +31,14 @@ Maze::Maze(const std::string& filename)
 
 	if(!field.empty())
 	{
-		fieldSizeX = field.at(0).length();
-		fieldSizeY = field.size();
+		fieldSize.first = field.at(0).length();
+		fieldSize.second = field.size();
 
 
-		toFindCount = this->searchForExits(0,0,1,0,fieldSizeX,fieldSizeY,toFindCount);
-		toFindCount = this->searchForExits(fieldSizeX-1,0,0,1,fieldSizeX,fieldSizeY,toFindCount);
-		toFindCount = this->searchForExits(fieldSizeX-1,fieldSizeY-1,-1,0,fieldSizeX,fieldSizeY,toFindCount);
-		toFindCount = this->searchForExits(0,fieldSizeY-1,0,-1,fieldSizeX,fieldSizeY,toFindCount);
+		toFindCount = this->searchForExits(0,0,1,0,fieldSize.first,fieldSize.second,toFindCount);
+		toFindCount = this->searchForExits(fieldSize.first-1,0,0,1,fieldSize.first,fieldSize.second,toFindCount);
+		toFindCount = this->searchForExits(fieldSize.first-1,fieldSize.second-1,-1,0,fieldSize.first,fieldSize.second,toFindCount);
+		toFindCount = this->searchForExits(0,fieldSize.second-1,0,-1,fieldSize.first,fieldSize.second,toFindCount);
 
 		cout << "Start: " << start.first << ", " << start.second << endl;
 		cout << "End: " << end.first << ", " << end.second << endl;
@@ -61,6 +59,11 @@ std::pair<int, int> Maze::getStart() const
 std::pair<int, int> Maze::getEnd() const
 {
 	return end;
+}
+
+std::pair<int,int> Maze::getBounds() const
+{
+	return fieldSize;
 }
 
 bool Maze::passable(std::pair<int, int> pair) const
@@ -94,6 +97,7 @@ bool Maze::isMarked(std::pair<int, int> pair, char mark) const
 		return false;
 	}
 }
+
 
 int Maze::searchForExits(int x, int y, int xInc, int yInc, int endX, int endY, int count)
 {
@@ -136,7 +140,14 @@ int Maze::searchForExits(int x, int y, int xInc, int yInc, int endX, int endY, i
 
 void Maze::mark(std::pair<int, int> pair, char marker)
 {
+	if(pair.first >= (int) field.at(0).length() || pair.first < 0 || pair.second >= (int) field.size() || pair.second < 0 )
+	{
+		cerr << "Cannot mark outside of the maze!";
+	}
+	else
+	{
 	field.at(pair.second).at(pair.first) = marker;
+	}
 }
 
 /*Maze::Maze(const Maze& maze)

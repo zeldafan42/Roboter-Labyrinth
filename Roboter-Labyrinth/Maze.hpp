@@ -20,6 +20,7 @@ public:
 	~Maze();
 	std::pair<int,int> getStart() const;
 	std::pair<int,int> getEnd() const;
+	std::pair<int,int> getBounds() const;
 	bool passable(std::pair<int,int>) const;
 	void mark(std::pair<int,int>, char marker);
 	bool isMarked(std::pair<int, int> pair, char mark) const;
@@ -32,6 +33,7 @@ private:
 	std::vector<std::string > field;
 	std::pair<int,int> start;
 	std::pair<int,int> end;
+	std::pair<int,int> fieldSize;
 
 };
 
