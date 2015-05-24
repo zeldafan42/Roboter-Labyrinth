@@ -21,7 +21,7 @@ void DeadEndFiller::printSolution()
 {
 	while(fillDeadEnds())
 	{
-		maze->printMaze();
+		// maze->printMaze();
 	}
 	maze->printMaze();
 
