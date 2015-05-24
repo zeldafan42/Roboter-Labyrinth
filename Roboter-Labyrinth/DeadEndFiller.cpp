@@ -73,14 +73,14 @@ int DeadEndFiller::getNeighbours(std::pair<int,int>currentField, int width, int 
 	if((x-1) >= 0)
 	{
 		potentialWall.first--;
-		wallCount += (maze->isMarked(potentialWall, '#') || maze->isMarked(potentialWall, 'D'));
+		wallCount += (maze->isMarked(potentialWall) || maze->isMarked(potentialWall));
 		potentialWall.first++;
 	}
 
 	if((y-1) >= 0)
 	{
 		potentialWall.second--;
-		wallCount += (maze->isMarked(potentialWall, '#') || maze->isMarked(potentialWall, 'D'));
+		wallCount += (maze->isMarked(potentialWall) || maze->isMarked(potentialWall));
 		potentialWall.second++;
 	}
 
@@ -88,14 +88,14 @@ int DeadEndFiller::getNeighbours(std::pair<int,int>currentField, int width, int 
 	if((x+1) < width)
 	{
 		potentialWall.first++;
-		wallCount += (maze->isMarked(potentialWall, '#') || maze->isMarked(potentialWall, 'D'));
+		wallCount += (maze->isMarked(potentialWall) || maze->isMarked(potentialWall));
 		potentialWall.first--;
 	}
 
 	if((y+1) < height)
 	{
 		potentialWall.second++;
-		wallCount += (maze->isMarked(potentialWall, '#') || maze->isMarked(potentialWall, 'D'));
+		wallCount += (maze->isMarked(potentialWall) || maze->isMarked(potentialWall));
 		potentialWall.second--;
 	}
 
@@ -110,7 +110,7 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	int x = currentField.first;
 	int y = currentField.second;
 
-	if(!maze->isMarked(currentField, '#') && !maze->isMarked(currentField, 'D')) //checks whether the field is not already a wall
+	if(!maze->isMarked(currentField) && !maze->isMarked(currentField)) //checks whether the field is not already a wall
 	{
 		maze->mark(currentField,'D');
 	}
@@ -200,7 +200,7 @@ void DeadEndFiller::turnAndMove()
 			default:	break;
 
 		}
-		if(maze->passable(targetPosition) && (!maze->isMarked(targetPosition,'D')))
+		if(maze->passable(targetPosition) && (!maze->isMarked(targetPosition)))
 		{
 			move(targetPosition);
 			return;
