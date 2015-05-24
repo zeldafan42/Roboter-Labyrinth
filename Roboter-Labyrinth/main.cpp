@@ -50,22 +50,29 @@ int main(int argc,char* argv[])
 		}
 	}
 
-	Maze maze(argv[optind]);
-	maze.printMaze();
-
-	for(i = 0; i<3; i++)
+	if(argc == optind + 1)
 	{
-		if(robotsInUse[i])
+		Maze maze(argv[optind]);
+		maze.printMaze();
+
+		for(i = 0; i<3; i++)
 		{
-			switch(i)
+			if(robotsInUse[i])
 			{
-			case 0:
-					cout << "Starting robot" << i+1 <<endl;
-					Linksdreher l1(maze);
-					l1.printSolution();
-					break;
+				switch(i)
+				{
+				case 0:
+						cout << "Starting robot" << i+1 <<endl;
+						Linksdreher l1(maze);
+						l1.printSolution();
+						break;
+				}
 			}
 		}
+	}
+	else
+	{
+		printUsage();
 	}
 
 }
