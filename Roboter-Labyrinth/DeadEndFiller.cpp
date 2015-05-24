@@ -45,8 +45,7 @@ int DeadEndFiller::fillDeadEnds()
 		{
 			if(getNeighbours(std::make_pair(i,j), width, height) == 3)
 			{
-				didFill = true;
-				recursiveFill(std::make_pair(i,j), width, height);
+				didFill = (recursiveFill(std::make_pair(i,j), width, height) || didFill);
 			}
 		}
 	}
@@ -97,19 +96,19 @@ int DeadEndFiller::getNeighbours(std::pair<int,int>currentField, int width, int 
 }
 
 
-void DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int height)
+bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int height)
 {
 	std::pair<int, int> nextDeadEndField = currentField;
 	int x = currentField.first;
 	int y = currentField.second;
 
-	if(!maze->isMarked(currentField, '#')) //checks whether the field is not already a wall
+	if(!maze->isMarked(currentField, '#') && !maze->isMarked(currentField, 'D')) //checks whether the field is not already a wall
 	{
 		maze->mark(currentField,'D');
 	}
 	else
 	{
-		return;
+		return false;
 	}
 
 
@@ -119,7 +118,7 @@ void DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 		if(getNeighbours(nextDeadEndField,width,height) == 3)
 		{
 			recursiveFill(nextDeadEndField, width, height);
-			return;
+			return true;
 		}
 		nextDeadEndField.first++;
 	}
@@ -131,7 +130,7 @@ void DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 		if(getNeighbours(nextDeadEndField,width,height) == 3)
 		{
 			recursiveFill(nextDeadEndField, width, height);
-			return;
+			return true;
 		}
 		nextDeadEndField.second++;
 	}
@@ -143,7 +142,7 @@ void DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 		if(getNeighbours(nextDeadEndField,width,height) == 3)
 		{
 			recursiveFill(nextDeadEndField, width, height);
-			return;
+			return true;
 		}
 		nextDeadEndField.first--;
 	}
@@ -155,11 +154,12 @@ void DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 		if(getNeighbours(nextDeadEndField,width,height) == 3)
 		{
 			recursiveFill(nextDeadEndField, width, height);
-			return;
+			return true;
 		}
 		nextDeadEndField.second--;
 	}
 
+	return false;
 
 }
 
