@@ -103,7 +103,15 @@ void DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	int x = currentField.first;
 	int y = currentField.second;
 
-	maze->mark(currentField,'D');
+	if(!maze->isMarked(currentField, '#')) //checks whether the field is not already a wall
+	{
+		maze->mark(currentField,'D');
+	}
+	else
+	{
+		return;
+	}
+
 
 	if((x-1) >= 0)
 	{
