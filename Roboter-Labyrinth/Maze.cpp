@@ -35,10 +35,10 @@ Maze::Maze(const std::string& filename)
 		fieldSize.second = field.size();
 
 
-		toFindCount = this->searchForExits(0,0,1,0,fieldSize.first,fieldSize.second,toFindCount);
-		toFindCount = this->searchForExits(fieldSize.first-1,0,0,1,fieldSize.first,fieldSize.second,toFindCount);
-		toFindCount = this->searchForExits(fieldSize.first-1,fieldSize.second-1,-1,0,fieldSize.first,fieldSize.second,toFindCount);
-		toFindCount = this->searchForExits(0,fieldSize.second-1,0,-1,fieldSize.first,fieldSize.second,toFindCount);
+		toFindCount = this->searchForExits(0,0,1,0,fieldSize.first,0,toFindCount);
+		toFindCount = this->searchForExits(fieldSize.first-1,0,0,1,fieldSize.first-1,fieldSize.second,toFindCount);
+		toFindCount = this->searchForExits(fieldSize.first-1,fieldSize.second-1,-1,0,0,fieldSize.second-1,toFindCount);
+		toFindCount = this->searchForExits(0,fieldSize.second-1,0,-1,0,0,toFindCount);
 
 		cout << "Start: " << start.first << ", " << start.second << endl;
 		cout << "End: " << end.first << ", " << end.second << endl;
@@ -130,7 +130,7 @@ int Maze::searchForExits(int x, int y, int xInc, int yInc, int endX, int endY, i
 		x += xInc;
 		y += yInc;
 
-		if(x >= endX || y >= endY)
+		if(x == endX && y == endY)
 		{
 			endReached = true;
 		}
