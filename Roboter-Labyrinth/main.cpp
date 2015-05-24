@@ -16,6 +16,7 @@
 #include "Robot.hpp"
 #include "Linksdreher.hpp"
 #include "DeadEndFiller.hpp"
+#include "BreadthFirstSearch.hpp"
 
 using namespace std;
 
@@ -71,13 +72,20 @@ int main(int argc,char* argv[])
 						break;
 
 				case 1:
-						cout << "Starting robot" << i+1 <<endl;
 						{
 							DeadEndFiller d1(maze);
 							d1.printSolution();
 							d1.printSteps();
 						}
 						break;
+
+				case 2:
+					{
+						BreadthFirstSearch b1(maze);
+						b1.printSolution();
+						b1.printSteps();
+					}
+				break;
 				default:
 						break;
 				}

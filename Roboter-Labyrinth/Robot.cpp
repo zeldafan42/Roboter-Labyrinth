@@ -19,7 +19,7 @@ Robot::Robot(const Maze& maze, const std::string& name) : name(name)
 
 Robot::~Robot()
 {
-	// TODO Auto-generated destructor stub
+	delete maze;
 }
 
 void Robot::printSteps()

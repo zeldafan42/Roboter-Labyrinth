@@ -77,9 +77,33 @@ std::pair<int,int> Maze::getBounds() const
 	return fieldSize;
 }
 
+char Maze::getMark(std::pair<int, int> pair) const
+{
+	if(pair.first >= (int) fieldSize.first || pair.first < 0 || pair.second >= fieldSize.first || pair.second < 0 )
+	{
+		return 'E';
+	}
+
+	return field.at(pair.second).at(pair.first);
+}
+
+void Maze::clearMark(char mark)
+{
+	for(auto fIt = field.begin(); fIt != field.end(); ++fIt)
+	{
+		for(auto sIt = fIt->begin(); sIt != fIt->end(); ++sIt)
+		{
+			if(*sIt == mark)
+			{
+				*sIt = ' ';
+			}
+		}
+	}
+}
+
 bool Maze::passable(std::pair<int, int> pair) const
 {
-	if(pair.first >= (int) field.at(0).length() || pair.first < 0 || pair.second >= (int) field.size() || pair.second < 0 )
+	if(pair.first >= (int) fieldSize.first || pair.first < 0 || pair.second >= fieldSize.first || pair.second < 0 )
 	{
 		return false;
 	}
@@ -95,7 +119,7 @@ bool Maze::passable(std::pair<int, int> pair) const
 
 bool Maze::isMarked(std::pair<int, int> pair, char mark) const
 {
-	if(pair.first >= (int) field.at(0).length() || pair.first < 0 || pair.second >= (int) field.size() || pair.second < 0 )
+	if(pair.first >= (int) fieldSize.first || pair.first < 0 || pair.second >= fieldSize.second || pair.second < 0 )
 	{
 		return false;
 	}
@@ -109,6 +133,21 @@ bool Maze::isMarked(std::pair<int, int> pair, char mark) const
 	}
 }
 
+bool Maze::isMarked(std::pair<int, int> pair) const
+{
+	if(pair.first >= fieldSize.first || pair.first < 0 || pair.second >= fieldSize.second || pair.second < 0 )
+	{
+		return false;
+	}
+	else if(field.at(pair.second).at(pair.first) != ' ')
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 int Maze::searchForExits(int x, int y, int xInc, int yInc, int endX, int endY, int count)
 {
