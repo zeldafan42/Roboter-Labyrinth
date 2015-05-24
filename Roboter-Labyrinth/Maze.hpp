@@ -22,6 +22,7 @@ public:
 	std::pair<int,int> getEnd() const;
 	bool passable(std::pair<int,int>) const;
 	void mark(std::pair<int,int>, char marker);
+	bool isMarked(std::pair<int, int> pair, char mark) const;
 	void printMaze() const;
 
 
