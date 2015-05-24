@@ -15,6 +15,7 @@
 #include "Maze.hpp"
 #include "Robot.hpp"
 #include "Linksdreher.hpp"
+#include "DeadEndFiller.hpp"
 
 using namespace std;
 
@@ -63,8 +64,19 @@ int main(int argc,char* argv[])
 				{
 				case 0:
 						cout << "Starting robot" << i+1 <<endl;
-						Linksdreher l1(maze);
-						l1.printSolution();
+						{
+							Linksdreher l1(maze);
+							l1.printSolution();
+						}
+						break;
+				case 1:
+						cout << "Starting robot" << i+1 <<endl;
+						{
+							DeadEndFiller d1(maze);
+							d1.printSolution();
+						}
+						break;
+				default:
 						break;
 				}
 			}
