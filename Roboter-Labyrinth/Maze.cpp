@@ -82,7 +82,7 @@ std::pair<int,int> Maze::getBounds() const
 
 char Maze::getMark(std::pair<int, int> pair) const
 {
-	if(pair.first >= (int) fieldSize.first || pair.first < 0 || pair.second >= fieldSize.first || pair.second < 0 )
+	if(pair.first >= fieldSize.first || pair.first < 0 || pair.second >= fieldSize.second || pair.second < 0 )
 	{
 		return 'E';
 	}
@@ -106,7 +106,7 @@ void Maze::clearMark(char mark)
 
 bool Maze::passable(std::pair<int, int> pair) const
 {
-	if(pair.first >= (int) fieldSize.first || pair.first < 0 || pair.second >= fieldSize.first || pair.second < 0 )
+	if(pair.first >= fieldSize.first || pair.first < 0 || pair.second >= fieldSize.second || pair.second < 0 )
 	{
 		return false;
 	}
@@ -193,13 +193,13 @@ int Maze::searchForExits(int x, int y, int xInc, int yInc, int endX, int endY, i
 
 void Maze::mark(std::pair<int, int> pair, char marker)
 {
-	if(pair.first >= (int) field.at(0).length() || pair.first < 0 || pair.second >= (int) field.size() || pair.second < 0 )
+	if(pair.first >= fieldSize.first || pair.first < 0 || pair.second >= fieldSize.second || pair.second < 0 )
 	{
 		cerr << "Cannot mark outside of the maze!";
 	}
 	else
 	{
-	field.at(pair.second).at(pair.first) = marker;
+		field.at(pair.second).at(pair.first) = marker;
 	}
 }
 
