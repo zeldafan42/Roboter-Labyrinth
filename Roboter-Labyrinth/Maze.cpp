@@ -121,7 +121,7 @@ int Maze::searchForExits(int x, int y, int xInc, int yInc, int endX, int endY, i
 
 void Maze::mark(std::pair<int, int> pair, char marker)
 {
-	field.at(pair.first).at(pair.second) = marker;
+	field.at(pair.second).at(pair.first) = marker;
 }
 
 /*Maze::Maze(const Maze& maze)

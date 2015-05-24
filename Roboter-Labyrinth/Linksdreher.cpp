@@ -34,38 +34,13 @@ void Linksdreher::printSolution()
 
 void Linksdreher::turnAndMove()
 {
-	bool leftFree = false;
+	int i = 0;
 	std::pair<int,int> targetPosition = pos;
 
+	this->dir = (this->dir+3) %4;
 
 
-	switch(this->dir)
-	{
-		case 0: 	targetPosition.first--;
-					break;
-
-		case 1:		targetPosition.second--;
-					break;
-
-		case 2:		targetPosition.first++;
-					break;
-
-		case 3:		targetPosition.second++;
-					break;
-
-		default:	break;
-
-	}
-
-	leftFree = maze->passable(targetPosition);
-
-	if(leftFree)
-	{
-		this->dir = (this->dir+3) %4; // turns left
-		move(targetPosition);
-		return;
-	}
-	else
+	for(i = 0; i < 3; i++)
 	{
 		targetPosition = pos;
 		switch(this->dir)
@@ -85,48 +60,16 @@ void Linksdreher::turnAndMove()
 			default:	break;
 
 		}
-		if(maze->passable(targetPosition)) // Now looks in front of him
+		if(maze->passable(targetPosition))
 		{
 			move(targetPosition);
-			return; //keeps his facing direction
+			return;
 		}
 		else
 		{
-			targetPosition = pos;
-			switch(this->dir)
-			{
-				case 0:		targetPosition.first++;
-							break;
-
-				case 1:		targetPosition.second++;
-							break;
-
-				case 2: 	targetPosition.first--;
-							break;
-
-				case 3:		targetPosition.second--;
-							break;
-
-				default:	break;
-
-			}
-
-			if(maze->passable(targetPosition)) // Now looks to the right
-			{
-				this->dir = (this->dir+1) %4; // turns right
-				move(targetPosition);
-				return;
-			}
-			else
-			{
-				this->dir = (this->dir+2) %4; //makes an U-turn
-				move(targetPosition);
-				return;
-			}
+			this->dir = (this->dir+1) %4;
 		}
 	}
-
-
 }
 
 void Linksdreher::move(std::pair<int,int> targetPosition)

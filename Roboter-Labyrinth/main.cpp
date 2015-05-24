@@ -49,6 +49,7 @@ int main(int argc,char* argv[])
 					break;
 		}
 	}
+
 	Maze maze(argv[optind]);
 	maze.printMaze();
 
