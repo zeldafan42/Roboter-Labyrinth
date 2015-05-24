@@ -87,6 +87,7 @@ void Linksdreher::turnAndMove()
 		}
 		if(maze->passable(targetPosition)) // Now looks in front of him
 		{
+			move(targetPosition);
 			return; //keeps his facing direction
 		}
 		else
@@ -113,11 +114,13 @@ void Linksdreher::turnAndMove()
 			if(maze->passable(targetPosition)) // Now looks to the right
 			{
 				this->dir = (this->dir+1) %4; // turns right
+				move(targetPosition);
 				return;
 			}
 			else
 			{
 				this->dir = (this->dir+2) %4; //makes an U-turn
+				move(targetPosition);
 				return;
 			}
 		}
