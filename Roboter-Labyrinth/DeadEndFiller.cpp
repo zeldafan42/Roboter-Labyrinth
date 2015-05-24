@@ -200,7 +200,7 @@ void DeadEndFiller::turnAndMove()
 			default:	break;
 
 		}
-		if(!(maze->isMarked(targetPosition,'#') || maze->isMarked(targetPosition,'D')))
+		if(maze->passable(targetPosition) && (!maze->isMarked(targetPosition,'D')))
 		{
 			move(targetPosition);
 			return;
