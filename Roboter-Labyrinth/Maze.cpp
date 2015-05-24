@@ -40,9 +40,20 @@ Maze::Maze(const std::string& filename)
 		toFindCount = this->searchForExits(fieldSize.first-1,fieldSize.second-1,-1,0,0,fieldSize.second-1,toFindCount);
 		toFindCount = this->searchForExits(0,fieldSize.second-1,0,-1,0,0,toFindCount);
 
+		if(toFindCount > 0)
+		{
+			cerr << "Could not find entrance/exit" << endl;
+			exit(-1);
+		}
+
 		cout << "Start: " << start.first << ", " << start.second << endl;
 		cout << "End: " << end.first << ", " << end.second << endl;
 
+	}
+	else
+	{
+		cerr << "Something went wrong while parsing maze file" << endl << "Check your file!" << endl;
+		exit(-1);
 	}
 }
 
