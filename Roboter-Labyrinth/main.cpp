@@ -94,6 +94,7 @@ int main(int argc,char* argv[])
 			}
 		}
 
+
 		for(auto it = robotList.begin(); it != robotList.end(); it++)
 		{
 			(*it)->printSolution();
@@ -102,18 +103,22 @@ int main(int argc,char* argv[])
 
 
 		cout << endl;
-		cout << "--------------------------------------" << endl;
-		cout << "| Number|    Roboter Name    | Steps |" << endl;
-		cout << "--------------------------------------" << endl;
+		cout << "  --------------------------------------" << endl;
+		cout << "  | Number|    Roboter Name    | Steps |" << endl;
+		cout << "  --------------------------------------" << endl;
+
+		i = 0;
 
 		for(auto it = robotList.begin(); it != robotList.end(); it++)
 		{
+			cout << "  |   " << i << "   | ";
 			(*it)->printResult();
+			i++;
 		}
 
 		robotList.clear();
 
-		cout << "--------------------------------------" << endl;
+		cout << "  --------------------------------------" << endl;
 		cout << endl;
 	}
 	else
