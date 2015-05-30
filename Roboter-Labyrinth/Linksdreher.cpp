@@ -40,18 +40,18 @@ void Linksdreher::printResult()
 
 	std::cout << name <<"        |";
 
-	for(i=0;i<(7-(digits/2));i++)
+	for(i=0;i<((7-digits)/2);i++)
 	{
 		std::cout <<" ";
 	}
 	std::cout << steps;
 
-	for(i=0;i<(7-(digits/2));i++)
+	for(i=0;i<((7-digits)/2);i++)
 	{
 		std::cout <<" ";
 	}
 
-	if(digits%2 == 1)
+	if(((7-digits)%2) == 1)
 	{
 		std::cout <<" ";
 	}

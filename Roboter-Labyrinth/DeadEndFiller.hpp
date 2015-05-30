@@ -18,9 +18,6 @@ public:
 	void printSolution();
 	void printResult();
 
-protected:
-	const std::string name;
-
 private:
 	int fillDeadEnds();
 	int getNeighbours(std::pair<int,int>currentField, int width, int height);
