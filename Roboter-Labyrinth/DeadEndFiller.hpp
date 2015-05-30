@@ -19,7 +19,7 @@ public:
 	void printResult();
 
 private:
-	int fillDeadEnds();
+	void fillDeadEnds();
 	int getNeighbours(std::pair<int,int>currentField, int width, int height);
 	bool recursiveFill(std::pair<int,int>currentField, int width, int height);
 	void turnAndMove();
