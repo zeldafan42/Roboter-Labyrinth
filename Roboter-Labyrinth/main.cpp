@@ -101,7 +101,8 @@ int main(int argc,char* argv[])
 				}
 			}
 		}
-
+		cout << endl;
+		cout << "--------------------------------------" << endl;
 		cout << "| Number|    Roboter Name    | Steps |" << endl;
 		cout << "--------------------------------------" << endl;
 		for(i = 0; i<3; i++)
@@ -136,6 +137,7 @@ int main(int argc,char* argv[])
 			}
 		}
 		cout << "--------------------------------------" << endl;
+		cout << endl;
 	}
 	else
 	{
