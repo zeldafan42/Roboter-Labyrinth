@@ -17,7 +17,7 @@ public:
 	Linksdreher(const Maze& maze);
 	virtual ~Linksdreher();
 	void printSolution();
-
+	void printResult();
 
 private:
 	void turnAndMove();

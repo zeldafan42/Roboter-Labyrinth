@@ -26,3 +26,20 @@ void Robot::printSteps()
 {
 	std::cout << "Robot " << name << " needed " << steps << " steps to get through the maze" << std::endl;
 }
+
+int Robot::countDigits(int number)
+{
+	int i = 0;
+	int product = 1;
+
+	for(i=0;i<10;i++)
+	{
+		if(number < product)
+		{
+			return i;
+		}
+		product *= 10;
+	}
+
+	return -1;
+}

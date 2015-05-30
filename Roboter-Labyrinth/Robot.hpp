@@ -17,6 +17,8 @@ public:
 	virtual void printSolution() = 0;
 	virtual ~Robot();
 	void printSteps();
+	virtual void printResult() = 0;
+	int countDigits(int number);
 
 protected:
 	std::pair<int,int> pos;

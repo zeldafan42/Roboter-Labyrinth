@@ -63,6 +63,47 @@ int main(int argc,char* argv[])
 		Maze maze(argv[optind]);
 		maze.printMaze();
 
+
+		Linksdreher l1(maze);
+		DeadEndFiller d1(maze);
+		BreadthFirstSearch b1(maze);
+
+
+		for(i = 0; i<3; i++)
+		{
+
+			if(robotsInUse[i])
+			{
+				switch(i)
+				{
+				case 0:
+						{
+							l1.printSolution();
+							l1.printSteps();
+						}
+						break;
+
+				case 1:
+						{
+							d1.printSolution();
+							d1.printSteps();
+						}
+						break;
+
+				case 2:
+						{
+							b1.printSolution();
+							b1.printSteps();
+						}
+				break;
+				default:
+						break;
+				}
+			}
+		}
+
+		cout << "| Number|    Roboter Name    | Steps |" << endl;
+		cout << "--------------------------------------" << endl;
 		for(i = 0; i<3; i++)
 		{
 			if(robotsInUse[i])
@@ -71,32 +112,30 @@ int main(int argc,char* argv[])
 				{
 				case 0:
 						{
-							Linksdreher l1(maze);
-							l1.printSolution();
-							l1.printSteps();
+							cout << "|   0   | ";
+							l1.printResult();
 						}
 						break;
 
 				case 1:
 						{
-							DeadEndFiller d1(maze);
-							d1.printSolution();
-							d1.printSteps();
+							cout << "|   1   | ";
+							d1.printResult();
 						}
 						break;
 
 				case 2:
-					{
-						BreadthFirstSearch b1(maze);
-						b1.printSolution();
-						b1.printSteps();
-					}
+						{
+							cout << "|   2   | ";
+							b1.printResult();
+						}
 				break;
 				default:
 						break;
 				}
 			}
 		}
+		cout << "--------------------------------------" << endl;
 	}
 	else
 	{

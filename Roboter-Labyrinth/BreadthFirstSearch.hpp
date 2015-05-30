@@ -16,6 +16,7 @@ public:
 	BreadthFirstSearch(const Maze& maze);
 	virtual ~BreadthFirstSearch();
 	void printSolution();
+	void printResult();
 };
 
 #endif /* BREADTHFIRSTSEARCH_HPP_ */

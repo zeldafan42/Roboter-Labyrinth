@@ -33,6 +33,31 @@ void Linksdreher::printSolution()
 	maze->printMaze();
 }
 
+void Linksdreher::printResult()
+{
+	int digits = countDigits(steps);
+	int i = 0;
+
+	std::cout << name <<"        |";
+
+	for(i=0;i<(7-(digits/2));i++)
+	{
+		std::cout <<" ";
+	}
+	std::cout << steps;
+
+	for(i=0;i<(7-(digits/2));i++)
+	{
+		std::cout <<" ";
+	}
+
+	if(digits%2 == 1)
+	{
+		std::cout <<" ";
+	}
+
+	std::cout <<"|" << std::endl;
+}
 
 void Linksdreher::turnAndMove()
 {

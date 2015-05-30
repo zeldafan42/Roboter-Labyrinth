@@ -16,6 +16,7 @@ public:
 	DeadEndFiller(const Maze& maze);
 	virtual ~DeadEndFiller();
 	void printSolution();
+	void printResult();
 
 protected:
 	const std::string name;

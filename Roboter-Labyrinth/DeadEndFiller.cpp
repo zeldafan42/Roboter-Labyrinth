@@ -20,10 +20,8 @@ DeadEndFiller::~DeadEndFiller() {
 
 void DeadEndFiller::printSolution()
 {
-	while(fillDeadEnds())
-	{
-		// maze->printMaze();
-	}
+	fillDeadEnds();
+
 	maze->printMaze();
 
 	this->pos = maze->getStart();
@@ -35,6 +33,34 @@ void DeadEndFiller::printSolution()
 
 	maze->printMaze();
 }
+
+void DeadEndFiller::printResult()
+{
+	int i = 0;
+	int digits = countDigits(steps);
+
+	std::cout << name <<"      | ";
+
+	for(i=0;i<(7-(digits/2));i++)
+	{
+		std::cout <<" ";
+	}
+	std::cout << steps;
+
+	for(i=0;i<(7-(digits/2));i++)
+	{
+		std::cout <<" ";
+	}
+
+	if(digits%2 == 1)
+	{
+		std::cout <<" ";
+	}
+
+	std::cout <<"|" << std::endl;
+
+}
+
 
 int DeadEndFiller::fillDeadEnds()
 {
@@ -73,14 +99,14 @@ int DeadEndFiller::getNeighbours(std::pair<int,int>currentField, int width, int 
 	if((x-1) >= 0)
 	{
 		potentialWall.first--;
-		wallCount += (maze->isMarked(potentialWall) || maze->isMarked(potentialWall));
+		wallCount += (maze->isMarked(potentialWall));
 		potentialWall.first++;
 	}
 
 	if((y-1) >= 0)
 	{
 		potentialWall.second--;
-		wallCount += (maze->isMarked(potentialWall) || maze->isMarked(potentialWall));
+		wallCount += (maze->isMarked(potentialWall));
 		potentialWall.second++;
 	}
 
@@ -88,14 +114,14 @@ int DeadEndFiller::getNeighbours(std::pair<int,int>currentField, int width, int 
 	if((x+1) < width)
 	{
 		potentialWall.first++;
-		wallCount += (maze->isMarked(potentialWall) || maze->isMarked(potentialWall));
+		wallCount += (maze->isMarked(potentialWall));
 		potentialWall.first--;
 	}
 
 	if((y+1) < height)
 	{
 		potentialWall.second++;
-		wallCount += (maze->isMarked(potentialWall) || maze->isMarked(potentialWall));
+		wallCount += (maze->isMarked(potentialWall));
 		potentialWall.second--;
 	}
 
@@ -110,7 +136,7 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	int x = currentField.first;
 	int y = currentField.second;
 
-	if(!maze->isMarked(currentField) && !maze->isMarked(currentField)) //checks whether the field is not already a wall
+	if(!maze->isMarked(currentField)) //checks whether the field is not already a wall
 	{
 		maze->mark(currentField,'D');
 	}
