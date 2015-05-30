@@ -68,7 +68,6 @@ int main(int argc,char* argv[])
 
 		forward_list<std::unique_ptr<Robot> > robotList;
 
-
 		for(i = 0; i<3; i++)
 		{
 
@@ -81,6 +80,7 @@ int main(int argc,char* argv[])
 						break;
 
 				case 1:
+
 						robotList.push_front(std::unique_ptr<Robot>(new DeadEndFiller(maze)));
 						break;
 
