@@ -65,9 +65,9 @@ int main(int argc,char* argv[])
 		maze.printMaze();
 
 
-		std::shared_ptr<Linksdreher> ld;
-		std::shared_ptr<DeadEndFiller> def;
-		std::shared_ptr<BreadthFirstSearch> bfs;
+		std::unique_ptr<Linksdreher> ld;
+		std::unique_ptr<DeadEndFiller> def;
+		std::unique_ptr<BreadthFirstSearch> bfs;
 
 
 		for(i = 0; i<3; i++)
@@ -79,7 +79,7 @@ int main(int argc,char* argv[])
 				{
 				case 0:
 						{
-							ld = std::make_shared<Linksdreher>(Linksdreher(maze));
+							ld = std::unique_ptr<Linksdreher>(new Linksdreher(maze));
 							ld->printSolution();
 							ld->printSteps();
 						}
@@ -87,7 +87,7 @@ int main(int argc,char* argv[])
 
 				case 1:
 						{
-							def = std::make_shared<DeadEndFiller>(DeadEndFiller(maze));
+							def = std::unique_ptr<DeadEndFiller>(new DeadEndFiller(maze));
 							def->printSolution();
 							def->printSteps();
 						}
@@ -95,7 +95,7 @@ int main(int argc,char* argv[])
 
 				case 2:
 						{
-							bfs = std::make_shared<BreadthFirstSearch>(BreadthFirstSearch(maze));
+							bfs = std::unique_ptr<BreadthFirstSearch>(new BreadthFirstSearch(maze));
 							bfs->printSolution();
 							bfs->printSteps();
 						}
