@@ -79,8 +79,7 @@ int main(int argc,char* argv[])
 				{
 				case 0:
 						{
-							std::shared_ptr<Linksdreher> l1 (new Linksdreher(maze));
-							ld = l1;
+							ld = std::make_shared<Linksdreher>(Linksdreher(maze));
 							ld->printSolution();
 							ld->printSteps();
 						}
@@ -88,8 +87,7 @@ int main(int argc,char* argv[])
 
 				case 1:
 						{
-							std::shared_ptr<DeadEndFiller> d1 (new DeadEndFiller(maze));
-							def = d1;
+							def = std::make_shared<DeadEndFiller>(DeadEndFiller(maze));
 							def->printSolution();
 							def->printSteps();
 						}
@@ -97,8 +95,7 @@ int main(int argc,char* argv[])
 
 				case 2:
 						{
-							std::shared_ptr<BreadthFirstSearch> b1 (new BreadthFirstSearch(maze));
-							bfs = b1;
+							bfs = std::make_shared<BreadthFirstSearch>(BreadthFirstSearch(maze));
 							bfs->printSolution();
 							bfs->printSteps();
 						}
