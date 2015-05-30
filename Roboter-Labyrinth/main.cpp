@@ -17,6 +17,7 @@
 #include "Linksdreher.hpp"
 #include "DeadEndFiller.hpp"
 #include "BreadthFirstSearch.hpp"
+#include <memory>
 
 using namespace std;
 
@@ -64,9 +65,9 @@ int main(int argc,char* argv[])
 		maze.printMaze();
 
 
-		Linksdreher l1(maze);
-		DeadEndFiller d1(maze);
-		BreadthFirstSearch b1(maze);
+		std::shared_ptr<Linksdreher> ld;
+		std::shared_ptr<DeadEndFiller> def;
+		std::shared_ptr<BreadthFirstSearch> bfs;
 
 
 		for(i = 0; i<3; i++)
@@ -78,22 +79,28 @@ int main(int argc,char* argv[])
 				{
 				case 0:
 						{
-							l1.printSolution();
-							l1.printSteps();
+							std::shared_ptr<Linksdreher> l1 (new Linksdreher(maze));
+							ld = l1;
+							ld->printSolution();
+							ld->printSteps();
 						}
 						break;
 
 				case 1:
 						{
-							d1.printSolution();
-							d1.printSteps();
+							std::shared_ptr<DeadEndFiller> d1 (new DeadEndFiller(maze));
+							def = d1;
+							def->printSolution();
+							def->printSteps();
 						}
 						break;
 
 				case 2:
 						{
-							b1.printSolution();
-							b1.printSteps();
+							std::shared_ptr<BreadthFirstSearch> b1 (new BreadthFirstSearch(maze));
+							bfs = b1;
+							bfs->printSolution();
+							bfs->printSteps();
 						}
 				break;
 				default:
@@ -114,21 +121,21 @@ int main(int argc,char* argv[])
 				case 0:
 						{
 							cout << "|   0   | ";
-							l1.printResult();
+							ld->printResult();
 						}
 						break;
 
 				case 1:
 						{
 							cout << "|   1   | ";
-							d1.printResult();
+							def->printResult();
 						}
 						break;
 
 				case 2:
 						{
 							cout << "|   2   | ";
-							b1.printResult();
+							bfs->printResult();
 						}
 				break;
 				default:

@@ -147,10 +147,13 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	if((x-1) >= 0)
 	{
 		nextDeadEndField.first--;
-		if(!maze->isMarked(nextDeadEndField) && getNeighbours(nextDeadEndField,width,height) == 3)
+		if(!maze->isMarked(nextDeadEndField))
 		{
-			recursiveFill(nextDeadEndField, width, height);
-			return true;
+			if(getNeighbours(nextDeadEndField,width,height) == 3)
+			{
+				recursiveFill(nextDeadEndField, width, height);
+				return true;
+			}
 		}
 		nextDeadEndField.first++;
 	}
@@ -159,10 +162,13 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	if((y-1) >= 0)
 	{
 		nextDeadEndField.second--;
-		if(!maze->isMarked(nextDeadEndField) && getNeighbours(nextDeadEndField,width,height) == 3)
+		if(!maze->isMarked(nextDeadEndField))
 		{
-			recursiveFill(nextDeadEndField, width, height);
-			return true;
+			if(getNeighbours(nextDeadEndField,width,height) == 3)
+			{
+				recursiveFill(nextDeadEndField, width, height);
+				return true;
+			}
 		}
 		nextDeadEndField.second++;
 	}
@@ -171,10 +177,13 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	if((x+1) <= width)
 	{
 		nextDeadEndField.first++;
-		if(!maze->isMarked(nextDeadEndField) && getNeighbours(nextDeadEndField,width,height) == 3)
+		if(!maze->isMarked(nextDeadEndField))
 		{
-			recursiveFill(nextDeadEndField, width, height);
-			return true;
+			if(getNeighbours(nextDeadEndField,width,height) == 3)
+			{
+				recursiveFill(nextDeadEndField, width, height);
+				return true;
+			}
 		}
 		nextDeadEndField.first--;
 	}
@@ -183,10 +192,13 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	if((y+1) <= height)
 	{
 		nextDeadEndField.second++;
-		if(!maze->isMarked(nextDeadEndField) && getNeighbours(nextDeadEndField,width,height) == 3)
+		if(!maze->isMarked(nextDeadEndField))
 		{
-			recursiveFill(nextDeadEndField, width, height);
-			return true;
+			if(getNeighbours(nextDeadEndField,width,height) == 3)
+			{
+				recursiveFill(nextDeadEndField, width, height);
+				return true;
+			}
 		}
 		nextDeadEndField.second--;
 	}
