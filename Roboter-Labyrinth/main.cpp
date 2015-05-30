@@ -11,6 +11,7 @@
 #include <vector>
 #include <cstdlib>
 #include <cassert>
+#include <forward_list>
 #include <getopt.h>
 #include "Maze.hpp"
 #include "Robot.hpp"
@@ -65,9 +66,7 @@ int main(int argc,char* argv[])
 		maze.printMaze();
 
 
-		std::shared_ptr<Linksdreher> ld;
-		std::shared_ptr<DeadEndFiller> def;
-		std::shared_ptr<BreadthFirstSearch> bfs;
+		forward_list<std::unique_ptr<Robot> > robotList;
 
 
 		for(i = 0; i<3; i++)
@@ -78,71 +77,42 @@ int main(int argc,char* argv[])
 				switch(i)
 				{
 				case 0:
-						{
-							std::shared_ptr<Linksdreher> l1 (new Linksdreher(maze));
-							ld = l1;
-							ld->printSolution();
-							ld->printSteps();
-						}
+						robotList.push_front(std::unique_ptr<Robot>(new Linksdreher(maze)));
 						break;
 
 				case 1:
-						{
-							std::shared_ptr<DeadEndFiller> d1 (new DeadEndFiller(maze));
-							def = d1;
-							def->printSolution();
-							def->printSteps();
-						}
+						robotList.push_front(std::unique_ptr<Robot>(new DeadEndFiller(maze)));
 						break;
 
 				case 2:
-						{
-							std::shared_ptr<BreadthFirstSearch> b1 (new BreadthFirstSearch(maze));
-							bfs = b1;
-							bfs->printSolution();
-							bfs->printSteps();
-						}
-				break;
+						robotList.push_front(std::unique_ptr<Robot>(new BreadthFirstSearch(maze)));
+						break;
+
 				default:
 						break;
 				}
 			}
 		}
+
+		for(auto it = robotList.begin(); it != robotList.end(); it++)
+		{
+			(*it)->printSolution();
+			(*it)->printSteps();
+		}
+
+
 		cout << endl;
 		cout << "--------------------------------------" << endl;
 		cout << "| Number|    Roboter Name    | Steps |" << endl;
 		cout << "--------------------------------------" << endl;
-		for(i = 0; i<3; i++)
+
+		for(auto it = robotList.begin(); it != robotList.end(); it++)
 		{
-			if(robotsInUse[i])
-			{
-				switch(i)
-				{
-				case 0:
-						{
-							cout << "|   0   | ";
-							ld->printResult();
-						}
-						break;
-
-				case 1:
-						{
-							cout << "|   1   | ";
-							def->printResult();
-						}
-						break;
-
-				case 2:
-						{
-							cout << "|   2   | ";
-							bfs->printResult();
-						}
-				break;
-				default:
-						break;
-				}
-			}
+			(*it)->printResult();
 		}
+
+		robotList.clear();
+
 		cout << "--------------------------------------" << endl;
 		cout << endl;
 	}
