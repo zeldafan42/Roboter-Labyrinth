@@ -133,7 +133,6 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	std::pair<int, int> nextDeadEndField = currentField;
 	int x = currentField.first;
 	int y = currentField.second;
-	bool didFill = false;
 
 	if(!maze->isMarked(currentField)) //checks whether the field is not already a wall
 	{
@@ -148,10 +147,10 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	if((x-1) >= 0)
 	{
 		nextDeadEndField.first--;
-		if(getNeighbours(nextDeadEndField,width,height) == 3)
+		if(!maze->isMarked(nextDeadEndField) && getNeighbours(nextDeadEndField,width,height) == 3)
 		{
 			recursiveFill(nextDeadEndField, width, height);
-			didFill = true;
+			return true;
 		}
 		nextDeadEndField.first++;
 	}
@@ -160,10 +159,10 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	if((y-1) >= 0)
 	{
 		nextDeadEndField.second--;
-		if(getNeighbours(nextDeadEndField,width,height) == 3)
+		if(!maze->isMarked(nextDeadEndField) && getNeighbours(nextDeadEndField,width,height) == 3)
 		{
 			recursiveFill(nextDeadEndField, width, height);
-			didFill = true;
+			return true;
 		}
 		nextDeadEndField.second++;
 	}
@@ -172,10 +171,10 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	if((x+1) <= width)
 	{
 		nextDeadEndField.first++;
-		if(getNeighbours(nextDeadEndField,width,height) == 3)
+		if(!maze->isMarked(nextDeadEndField) && getNeighbours(nextDeadEndField,width,height) == 3)
 		{
 			recursiveFill(nextDeadEndField, width, height);
-			didFill = true;
+			return true;
 		}
 		nextDeadEndField.first--;
 	}
@@ -184,15 +183,15 @@ bool DeadEndFiller::recursiveFill(std::pair<int,int>currentField, int width, int
 	if((y+1) <= height)
 	{
 		nextDeadEndField.second++;
-		if(getNeighbours(nextDeadEndField,width,height) == 3)
+		if(!maze->isMarked(nextDeadEndField) && getNeighbours(nextDeadEndField,width,height) == 3)
 		{
 			recursiveFill(nextDeadEndField, width, height);
-			didFill = true;
+			return true;
 		}
 		nextDeadEndField.second--;
 	}
 
-	return didFill;
+	return false;
 
 }
 
