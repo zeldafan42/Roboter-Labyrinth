@@ -31,6 +31,8 @@ void Linksdreher::printSolution()
 	}
 
 	maze->printMaze();
+
+	printSteps();
 }
 
 void Linksdreher::printResult()

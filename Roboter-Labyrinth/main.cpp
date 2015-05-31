@@ -19,6 +19,7 @@
 #include "DeadEndFiller.hpp"
 #include "BreadthFirstSearch.hpp"
 #include <memory>
+#include <thread>
 
 using namespace std;
 
@@ -94,13 +95,19 @@ int main(int argc,char* argv[])
 			}
 		}
 
+		std::thread threads[3];
+		i = 0;
 
 		for(auto it = robotList.begin(); it != robotList.end(); it++)
 		{
-			(*it)->printSolution();
-			(*it)->printSteps();
+			threads[i] = std::thread((*it)->printSolution());
+			i++;
 		}
 
+		for(;i>=0;i--)
+		{
+			threads[i].join();
+		}
 
 		cout << endl;
 		cout << "  --------------------------------------" << endl;

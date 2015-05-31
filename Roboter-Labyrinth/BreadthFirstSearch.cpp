@@ -104,10 +104,9 @@ void BreadthFirstSearch::printSolution()
 	maze->clearMark('3');
 
 
-
-
-
 	maze->printMaze();
+
+	printSteps();
 }
 
 void BreadthFirstSearch::printResult()

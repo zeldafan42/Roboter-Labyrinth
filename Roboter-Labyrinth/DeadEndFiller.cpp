@@ -31,7 +31,10 @@ void DeadEndFiller::printSolution()
 		turnAndMove();
 	}
 
+	maze->clearMark('D');
 	maze->printMaze();
+
+	printSteps();
 }
 
 void DeadEndFiller::printResult()
