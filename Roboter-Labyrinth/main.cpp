@@ -20,6 +20,7 @@
 #include "BreadthFirstSearch.hpp"
 #include <memory>
 #include <thread>
+#include <mutex>
 
 using namespace std;
 
@@ -28,6 +29,7 @@ void printUsage();
 int main(int argc,char* argv[])
 {
 	int c = 0;
+	mutex m;
 	int count = 0;
 	int i = 0;
 	int robotNumber = 0;
@@ -99,7 +101,13 @@ int main(int argc,char* argv[])
 
 		for(auto it = robotList.begin(); it != robotList.end(); it++)
 		{
-			auto findSol = [it](){ (*it)->findSolution(); };
+			auto findSol = [it,&m]()
+			{
+				(*it)->findSolution();
+				m.lock();
+				(*it)->printMaze();
+				m.unlock();
+			};
 			threads.push_front(std::thread(findSol));
 		}
 
@@ -113,14 +121,15 @@ int main(int argc,char* argv[])
 
 		cout << endl;
 
-		for(auto it = robotList.begin(); it != robotList.end(); it++)
+		/*for(auto it = robotList.begin(); it != robotList.end(); it++)
 		{
 			(*it)->printMaze();
 
 			//Obsolete because of printResult
 			//(*it)->printSteps();
 			//cout << endl;
-		}
+		}*/
+		//Now in threads
 
 		cout << endl;
 		cout << "  --------------------------------------" << endl;
