@@ -15,10 +15,9 @@ BreadthFirstSearch::BreadthFirstSearch(const Maze& maze)  : Robot(maze,"BreadthF
 
 BreadthFirstSearch::~BreadthFirstSearch()
 {
-
 }
 
-void BreadthFirstSearch::printSolution()
+void BreadthFirstSearch::findSolution()
 {
 	int i = 0;
 	char cmd = 'E';

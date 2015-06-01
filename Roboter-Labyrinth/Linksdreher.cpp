@@ -11,16 +11,13 @@
 
 Linksdreher::Linksdreher(const Maze& maze) : Robot(maze, "Linksdreher")
 {
-	// TODO Auto-generated constructor stub
-
 }
 
 Linksdreher::~Linksdreher()
 {
-	// TODO Auto-generated destructor stub
 }
 
-void Linksdreher::printSolution()
+void Linksdreher::findSolution()
 {
 	steps = 0;
 	this->pos = maze->getStart();

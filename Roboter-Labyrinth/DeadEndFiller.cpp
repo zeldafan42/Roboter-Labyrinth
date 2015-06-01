@@ -11,14 +11,13 @@
 
 DeadEndFiller::DeadEndFiller(const Maze& maze) : Robot(maze,"DeadEndFiller")
 {
-	// TODO Auto-generated constructor stub
 }
 
-DeadEndFiller::~DeadEndFiller() {
-	// TODO Auto-generated destructor stub
+DeadEndFiller::~DeadEndFiller()
+{
 }
 
-void DeadEndFiller::printSolution()
+void DeadEndFiller::findSolution()
 {
 	fillDeadEnds();
 

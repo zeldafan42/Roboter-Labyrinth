@@ -5,10 +5,10 @@ CFLAGS=-std=c++11 -Wall -O
 all: labrob
 
 labrob: main.o Linksdreher.o BreadthFirstSearch.o DeadEndFiller.o Maze.o Robot.o
-	${CC} ${CFLAGS} -o labrob main.o Linksdreher.o BreadthFirstSearch.o DeadEndFiller.o Maze.o Robot.o
+	${CC} ${CFLAGS} -o labrob main.o Linksdreher.o BreadthFirstSearch.o DeadEndFiller.o Maze.o Robot.o -pthread
 
 main.o: main.cpp Maze.hpp Robot.hpp Linksdreher.hpp 
-	${CC} ${CFLAGS} -c -o main.o main.cpp
+	${CC} ${CFLAGS} -c -o main.o main.cpp -pthread
 
 Linksdreher.o: Linksdreher.cpp Linksdreher.hpp Robot.hpp Maze.hpp
 	${CC} ${CFLAGS} -c -o Linksdreher.o Linksdreher.cpp

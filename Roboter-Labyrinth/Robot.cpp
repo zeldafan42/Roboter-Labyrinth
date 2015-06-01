@@ -43,3 +43,8 @@ int Robot::countDigits(int number)
 
 	return -1;
 }
+
+void Robot::printMaze()
+{
+	maze->printMaze();
+}

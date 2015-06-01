@@ -16,7 +16,7 @@ class Linksdreher : public Robot {
 public:
 	Linksdreher(const Maze& maze);
 	virtual ~Linksdreher();
-	void printSolution();
+	void findSolution();
 	void printResult();
 
 private:

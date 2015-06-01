@@ -15,7 +15,7 @@ class BreadthFirstSearch: public Robot
 public:
 	BreadthFirstSearch(const Maze& maze);
 	virtual ~BreadthFirstSearch();
-	void printSolution();
+	void findSolution();
 	void printResult();
 };
 

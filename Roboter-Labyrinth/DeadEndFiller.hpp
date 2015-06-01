@@ -15,7 +15,7 @@ class DeadEndFiller : public Robot {
 public:
 	DeadEndFiller(const Maze& maze);
 	virtual ~DeadEndFiller();
-	void printSolution();
+	void findSolution();
 	void printResult();
 
 private:

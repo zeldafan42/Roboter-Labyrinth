@@ -14,7 +14,8 @@
 class Robot {
 public:
 	Robot(const Maze& maze, const std::string& name);
-	virtual void printSolution() = 0;
+	virtual void findSolution() = 0;
+	void printMaze();
 	virtual ~Robot();
 	void printSteps();
 	virtual void printResult() = 0;

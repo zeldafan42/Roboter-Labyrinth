@@ -67,7 +67,7 @@ int main(int argc,char* argv[])
 		maze.printMaze();
 
 
-		forward_list<std::unique_ptr<Robot> > robotList;
+		forward_list<std::shared_ptr<Robot> > robotList;
 
 		for(i = 0; i<3; i++)
 		{
@@ -77,16 +77,16 @@ int main(int argc,char* argv[])
 				switch(i)
 				{
 				case 0:
-						robotList.push_front(std::unique_ptr<Robot>(new Linksdreher(maze)));
+						robotList.push_front(std::shared_ptr<Robot>(new Linksdreher(maze)));
 						break;
 
 				case 1:
 
-						robotList.push_front(std::unique_ptr<Robot>(new DeadEndFiller(maze)));
+						robotList.push_front(std::shared_ptr<Robot>(new DeadEndFiller(maze)));
 						break;
 
 				case 2:
-						robotList.push_front(std::unique_ptr<Robot>(new BreadthFirstSearch(maze)));
+						robotList.push_front(std::shared_ptr<Robot>(new BreadthFirstSearch(maze)));
 						break;
 
 				default:
@@ -95,18 +95,23 @@ int main(int argc,char* argv[])
 			}
 		}
 
-		std::thread threads[3];
-		i = 0;
+		forward_list<std::thread> threads;
 
 		for(auto it = robotList.begin(); it != robotList.end(); it++)
 		{
-			threads[i] = std::thread((*it)->printSolution());
-			i++;
+			threads.push_front(std::thread(&Robot::findSolution,*it));
 		}
 
-		for(;i>=0;i--)
+		for(auto it = threads.begin(); it != threads.end(); it++)
+
 		{
-			threads[i].join();
+			it->join();
+		}
+
+		for(auto it = robotList.begin(); it != robotList.end(); it++)
+
+		{
+			(*it)->printMaze();
 		}
 
 		cout << endl;
@@ -126,7 +131,9 @@ int main(int argc,char* argv[])
 		robotList.clear();
 
 		cout << "  --------------------------------------" << endl;
+
 		cout << endl;
+
 	}
 	else
 	{
