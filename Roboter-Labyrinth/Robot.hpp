@@ -17,7 +17,7 @@ public:
 	virtual void findSolution() = 0;
 	void printMaze();
 	virtual ~Robot();
-	void printSteps();
+	//void printSteps();	//Obsolete because of printResult
 	virtual void printResult() = 0;
 	int countDigits(int number);
 

@@ -99,7 +99,8 @@ int main(int argc,char* argv[])
 
 		for(auto it = robotList.begin(); it != robotList.end(); it++)
 		{
-			threads.push_front(std::thread(&Robot::findSolution,*it));
+			auto findSol = [it](){ (*it)->findSolution(); };
+			threads.push_front(std::thread(findSol));
 		}
 
 		for(auto it = threads.begin(); it != threads.end(); it++)
@@ -108,10 +109,17 @@ int main(int argc,char* argv[])
 			it->join();
 		}
 
-		for(auto it = robotList.begin(); it != robotList.end(); it++)
+		threads.clear();
 
+		cout << endl;
+
+		for(auto it = robotList.begin(); it != robotList.end(); it++)
 		{
 			(*it)->printMaze();
+
+			//Obsolete because of printResult
+			//(*it)->printSteps();
+			//cout << endl;
 		}
 
 		cout << endl;

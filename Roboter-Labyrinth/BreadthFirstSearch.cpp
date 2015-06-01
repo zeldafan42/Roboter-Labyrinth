@@ -101,11 +101,6 @@ void BreadthFirstSearch::findSolution()
 	maze->clearMark('1');
 	maze->clearMark('2');
 	maze->clearMark('3');
-
-
-	maze->printMaze();
-
-	printSteps();
 }
 
 void BreadthFirstSearch::printResult()

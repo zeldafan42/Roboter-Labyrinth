@@ -26,10 +26,6 @@ void Linksdreher::findSolution()
 	{
 		turnAndMove();
 	}
-
-	maze->printMaze();
-
-	printSteps();
 }
 
 void Linksdreher::printResult()

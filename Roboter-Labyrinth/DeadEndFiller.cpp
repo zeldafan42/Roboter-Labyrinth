@@ -21,7 +21,7 @@ void DeadEndFiller::findSolution()
 {
 	fillDeadEnds();
 
-	maze->printMaze();
+	//maze->printMaze();
 
 	this->pos = maze->getStart();
 
@@ -31,9 +31,6 @@ void DeadEndFiller::findSolution()
 	}
 
 	maze->clearMark('D');
-	maze->printMaze();
-
-	printSteps();
 }
 
 void DeadEndFiller::printResult()

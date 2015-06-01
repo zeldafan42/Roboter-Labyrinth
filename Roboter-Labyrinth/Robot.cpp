@@ -22,10 +22,11 @@ Robot::~Robot()
 	delete maze;
 }
 
-void Robot::printSteps()
+//Obsolete because of printResult
+/*void Robot::printSteps()
 {
 	std::cout << "Robot " << name << " needed " << steps << " steps to get through the maze" << std::endl;
-}
+}*/
 
 int Robot::countDigits(int number)
 {
@@ -46,5 +47,6 @@ int Robot::countDigits(int number)
 
 void Robot::printMaze()
 {
+	std::cout << name << ":" << std::endl;
 	maze->printMaze();
 }

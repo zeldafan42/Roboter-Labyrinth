@@ -216,4 +216,5 @@ void Maze::printMaze() const
 	{
 		cout << field[i] << endl;
 	}
+	cout << endl;
 }
