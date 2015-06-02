@@ -30,72 +30,57 @@ int main(int argc,char* argv[])
 {
 	int c = 0;
 	mutex m;
-	int count = 0;
 	int i = 0;
 	int robotNumber = 0;
-	bool robotsInUse[3] = {0,0,0};
+	forward_list<std::shared_ptr<Robot> > robotList;
+	Maze maze(argv[1]);
 
 	while( (c = getopt(argc, argv, "t:h")) != EOF )
 	{
 		switch(c)
 		{
-		case 't':	robotNumber = (int) strtol(optarg, NULL, 0);
+		case 't':	
+			robotNumber = (int) strtol(optarg, NULL, 0);
 
-					if(robotNumber>3 || robotNumber < 1)
-					{
-						cout << "Robot #" << robotNumber << " not in use";
-					}
-					count++;
+			switch(robotNumber-1)
+			{
+			case 0:
+				robotList.push_front(std::shared_ptr<Robot>(new Linksdreher(maze)));
+				break;
 
-					robotsInUse[robotNumber-1] = true;
+			case 1:
 
-					break;
+				robotList.push_front(std::shared_ptr<Robot>(new DeadEndFiller(maze)));
+				break;
 
-		case 'h':	printUsage();
-					break;
+			case 2:
+				robotList.push_front(std::shared_ptr<Robot>(new BreadthFirstSearch(maze)));
+				break;
 
-		default:	assert(0);
-					break;
+			default:
+				cout << "Robot #" << robotNumber << " not available";
+				break;
+			}
+
+			break;
+
+		case 'h':	
+			printUsage();
+			break;
+
+		default:
+			assert(0);
+			break;
 		}
 	}
 
 	if(argc == optind + 1)
 	{
-		if(count == 0)
+		if(robotList.empty())
 		{
-			robotsInUse[0] = true;
+			robotList.push_front(std::shared_ptr<Robot>(new Linksdreher(maze)));
 		}
-		Maze maze(argv[optind]);
 		maze.printMaze();
-
-
-		forward_list<std::shared_ptr<Robot> > robotList;
-
-		for(i = 0; i<3; i++)
-		{
-
-			if(robotsInUse[i])
-			{
-				switch(i)
-				{
-				case 0:
-						robotList.push_front(std::shared_ptr<Robot>(new Linksdreher(maze)));
-						break;
-
-				case 1:
-
-						robotList.push_front(std::shared_ptr<Robot>(new DeadEndFiller(maze)));
-						break;
-
-				case 2:
-						robotList.push_front(std::shared_ptr<Robot>(new BreadthFirstSearch(maze)));
-						break;
-
-				default:
-						break;
-				}
-			}
-		}
 
 		forward_list<std::thread> threads;
 
@@ -120,16 +105,6 @@ int main(int argc,char* argv[])
 		threads.clear();
 
 		cout << endl;
-
-		/*for(auto it = robotList.begin(); it != robotList.end(); it++)
-		{
-			(*it)->printMaze();
-
-			//Obsolete because of printResult
-			//(*it)->printSteps();
-			//cout << endl;
-		}*/
-		//Now in threads
 
 		cout << endl;
 		cout << "  --------------------------------------" << endl;
@@ -166,4 +141,3 @@ void printUsage()
 	fprintf(stderr, "Usage: labrob FILENAME [-t1] [-t2] ... [-tn]\n");
 	exit(1);
 }
-
