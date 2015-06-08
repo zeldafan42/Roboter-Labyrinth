@@ -33,14 +33,9 @@ int main(int argc,char* argv[])
 	int i = 0;
 	int robotNumber = 0;
 	forward_list<std::shared_ptr<Robot> > robotList;
+	string robotInit;
 
-	if(argc < 2)
-	{
-		printUsage();
-	}
-	Maze maze(argv[1]);
-
-
+	//Start option parsing
 	while( (c = getopt(argc, argv, "t:h")) != EOF )
 	{
 		switch(c)
@@ -51,16 +46,16 @@ int main(int argc,char* argv[])
 			switch(robotNumber-1)
 			{
 			case 0:
-				robotList.push_front(std::shared_ptr<Robot>(new Linksdreher(maze)));
+				robotInit += '0';
 				break;
 
 			case 1:
 
-				robotList.push_front(std::shared_ptr<Robot>(new DeadEndFiller(maze)));
+				robotInit += '1';
 				break;
 
 			case 2:
-				robotList.push_front(std::shared_ptr<Robot>(new BreadthFirstSearch(maze)));
+				robotInit += '2';
 				break;
 
 			default:
@@ -79,14 +74,40 @@ int main(int argc,char* argv[])
 			break;
 		}
 	}
+	//End option parsing
 
 	if(argc == optind + 1)
 	{
+		Maze maze(argv[optind]);
+		maze.printMaze();
+		for(auto it = robotInit.begin();it!=robotInit.end();it++)
+		{
+			switch(*it)
+			{
+			case '0':
+				robotList.push_front(std::shared_ptr<Robot>(new Linksdreher(maze)));
+				break;
+
+			case '1':
+
+				robotList.push_front(std::shared_ptr<Robot>(new DeadEndFiller(maze)));
+				break;
+
+			case '2':
+				robotList.push_front(std::shared_ptr<Robot>(new BreadthFirstSearch(maze)));
+				break;
+
+			default:
+				cout << "Robot #" << robotNumber << " not available";
+				break;
+			}
+
+		}
+
 		if(robotList.empty())
 		{
 			robotList.push_front(std::shared_ptr<Robot>(new Linksdreher(maze)));
 		}
-		maze.printMaze();
 
 		forward_list<std::thread> threads;
 
