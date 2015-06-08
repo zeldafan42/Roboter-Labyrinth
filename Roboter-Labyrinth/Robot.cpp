@@ -14,7 +14,7 @@ Robot::Robot(const Maze& maze, const std::string& name) : name(name)
 	this->maze = new Maze(maze);
 	dir = 0;
 	steps = 0;
-	std::cout << "Starting " << name << std::endl;
+	//std::cout << "Starting " << name << std::endl;
 }
 
 Robot::~Robot()

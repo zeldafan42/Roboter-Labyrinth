@@ -33,7 +33,13 @@ int main(int argc,char* argv[])
 	int i = 0;
 	int robotNumber = 0;
 	forward_list<std::shared_ptr<Robot> > robotList;
+
+	if(argc < 2)
+	{
+		printUsage();
+	}
 	Maze maze(argv[1]);
+
 
 	while( (c = getopt(argc, argv, "t:h")) != EOF )
 	{

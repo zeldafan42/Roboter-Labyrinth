@@ -49,8 +49,8 @@ Maze::Maze(const std::string& filename)
 			exit(-1);
 		}
 
-		cout << "Start: " << start.first << ", " << start.second << endl;
-		cout << "End: " << end.first << ", " << end.second << endl;
+		//cout << "Start: " << start.first << ", " << start.second << endl;
+		//cout << "End: " << end.first << ", " << end.second << endl;
 
 	}
 	else
@@ -62,7 +62,6 @@ Maze::Maze(const std::string& filename)
 
 Maze::~Maze()
 {
-	// TODO Auto-generated destructor stub
 }
 
 std::pair<int, int> Maze::getStart() const
